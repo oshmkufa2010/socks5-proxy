@@ -38,17 +38,13 @@ runTCPServer mhost port server = withSocketsDo $ do
 
 socks5Server :: Socket -> IO ()
 socks5Server clientSocket = do
-  mRemoteSocket <- runSocketEff buildSocks5Connection clientSocket
-  case mRemoteSocket of
-    Left msg -> do 
-      E.ioError (userError msg)
-    Right socket -> do
-      a <- async (forward clientSocket socket)
-      b <- async (forward socket clientSocket)
-      waitCatch a
-      waitCatch b
-      gracefulClose socket 5000
-  where 
+  socket <- runSocketEff buildSocks5Connection clientSocket
+  a <- async (forward clientSocket socket)
+  b <- async (forward socket clientSocket)
+  waitCatch a
+  waitCatch b
+  gracefulClose socket 5000
+  where
     forward :: Socket -> Socket -> IO ()
     forward from to = do
       bs <- recv from 4096

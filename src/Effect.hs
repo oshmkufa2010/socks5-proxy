@@ -14,21 +14,22 @@ import Control.Monad.State
 import Control.Monad.Reader
 import Control.Monad.Except
 import Control.Monad (when)
+import Control.Exception (IOException)
 
-type SocketEff a = ReaderT Socket (StateT ByteString (ExceptT String IO)) a
+type SocketEff a = ReaderT Socket (StateT ByteString IO) a
 
-runSocketEff :: SocketEff a -> Socket -> IO (Either String a)
-runSocketEff eff socket = runExceptT $ evalStateT (runReaderT eff socket) BS.empty
+runSocketEff :: SocketEff a -> Socket -> IO a
+runSocketEff eff socket = evalStateT (runReaderT eff socket) BS.empty
 
-throwSocketError :: String -> SocketEff a
+throwSocketError :: IOException -> SocketEff a
 throwSocketError = throwError
 
 recvBytesWithoutBuffer :: SocketEff ByteString
 recvBytesWithoutBuffer = do
   socket <- ask
   bs <- liftIO (recv socket 4096)
-  when (BS.length bs == 0) $ throwError $ show socket ++ ": the peer has closed its half side of the connection."
-  return bs 
+  when (BS.length bs == 0) $ throwSocketError $ userError $ show socket ++ ": the peer has closed its half side of the connection."
+  return bs
 
 recvNBytes :: Int -> SocketEff ByteString
 recvNBytes size

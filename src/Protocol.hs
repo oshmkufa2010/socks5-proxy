@@ -39,9 +39,9 @@ recvVerAndMethod :: SocketEff (Word8, Word8)
 recvVerAndMethod = do
   result <- recvNBytes 2
   let [ver, methodn] = BS.unpack result
-  when (ver /= 0x05) $ throwSocketError ("unsupported ver: " ++ (show ver))
+  when (ver /= 0x05) $ throwSocketError $ userError ("unsupported ver: " ++ (show ver))
   methods <- recvNBytes (fromIntegral methodn)
-  when (0x00 `notElem` (BS.unpack methods)) $ throwSocketError "no method supported"
+  when (0x00 `notElem` (BS.unpack methods)) $ throwSocketError $ userError "no method supported"
   return (ver, 0x00)
 
 recvTargetAddress :: SocketEff (Word8, Word8, String, String, ByteString)
@@ -56,8 +56,8 @@ recvTargetAddress = do
         len <- recvNBytes 1
         domain <- recvNBytes (fromIntegral (BS.head len))
         return (C.unpack domain, BS.append len domain)
-      _ -> throwSocketError "unsupported atyp"
-  port <- recvNBytes 2 
+      _ -> throwSocketError $ userError "unsupported atyp"
+  port <- recvNBytes 2
   return (cmd, atyp, addr, toPort port, BS.append encodedAddr port)
 
 buildSocks5Connection :: SocketEff Socket
@@ -65,12 +65,12 @@ buildSocks5Connection = do
   (ver, method) <- recvVerAndMethod
   sendAllBytes (BS.pack [ver, method])
   (cmd, atyp, addr, port, encodedAddrAndPort) <- recvTargetAddress
-  when (cmd /= 0x01) $ throwSocketError ("unsupported cmd: " ++ (show cmd))
+  when (cmd /= 0x01) $ throwSocketError $ userError ("unsupported cmd: " ++ (show cmd))
   mSocket :: Either E.SomeException Socket <- liftIO $ E.try $ newConnection addr port
   case mSocket of
     Left e -> do
       sendAllBytes $ ver `BS.cons` 0x01 `BS.cons` 0x00 `BS.cons` atyp `BS.cons` encodedAddrAndPort
-      throwSocketError (show e)
+      throwSocketError $ userError (show e)
     Right socket -> do
       sendAllBytes $ ver `BS.cons` 0x00 `BS.cons` 0x00 `BS.cons` atyp `BS.cons` encodedAddrAndPort
       return socket
