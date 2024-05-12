@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.2.
+-- This file has been generated from package.yaml by hpack version 0.36.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0469d34510084dec84253dda607a6ec735a41c989d4cd3f9c93a45936d6e39bd
+-- hash: dc252967200c16df458142c1371f74d6b7a4b6bf9a4a60c7e4926a4573fd7ce3
 
 name:           socks5-proxy
 version:        0.1.0.0
@@ -27,7 +27,6 @@ source-repository head
 
 library
   exposed-modules:
-      Effect
       Protocol
       Server
   other-modules:

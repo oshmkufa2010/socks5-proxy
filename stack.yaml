@@ -17,7 +17,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-15.6
+resolver: ghc-9.4.8
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -39,7 +39,10 @@ packages:
 # - git: https://github.com/commercialhaskell/stack.git
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a
 #
-# extra-deps: []
+extra-deps:
+- async-2.2.4@sha256:b83dec34a53520de84c6dd3dc7aae45d22409b46eb471c478b98108215a370f0,3095
+- network-3.1.2.5@sha256:433a5e076aaa8eb3e4158abae78fb409c6bd754e9af99bc2e87583d2bcd8404a,4888
+- hashable-1.4.0.1@sha256:0251ad5228be07909a385152a3ff634fac1f892611f89904aea5c5e7af411e5d,4790
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

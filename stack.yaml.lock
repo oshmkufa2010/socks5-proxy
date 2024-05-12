@@ -3,10 +3,26 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
-snapshots:
+packages:
 - completed:
-    size: 491387
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/15/6.yaml
-    sha256: 8d81505a6de861e167a58534ab62330afb75bfa108735c7db1204f7ef2a39d79
-  original: lts-15.6
+    hackage: async-2.2.4@sha256:b83dec34a53520de84c6dd3dc7aae45d22409b46eb471c478b98108215a370f0,3095
+    pantry-tree:
+      sha256: 08b8a9f8d2e27d51b04fb9c14f65e1209c7f24160d2a4557963900edb2c0f07d
+      size: 501
+  original:
+    hackage: async-2.2.4@sha256:b83dec34a53520de84c6dd3dc7aae45d22409b46eb471c478b98108215a370f0,3095
+- completed:
+    hackage: network-3.1.2.5@sha256:433a5e076aaa8eb3e4158abae78fb409c6bd754e9af99bc2e87583d2bcd8404a,4888
+    pantry-tree:
+      sha256: 957e4dbb988f47164c821807297a6020c1108cd3265582ac2aa9292708cb62c9
+      size: 3971
+  original:
+    hackage: network-3.1.2.5@sha256:433a5e076aaa8eb3e4158abae78fb409c6bd754e9af99bc2e87583d2bcd8404a,4888
+- completed:
+    hackage: hashable-1.4.0.1@sha256:0251ad5228be07909a385152a3ff634fac1f892611f89904aea5c5e7af411e5d,4790
+    pantry-tree:
+      sha256: abd289fe989e99d3b40a27e68f727cf6c6ba192906b436ab0c69850c26d1876f
+      size: 1248
+  original:
+    hackage: hashable-1.4.0.1@sha256:0251ad5228be07909a385152a3ff634fac1f892611f89904aea5c5e7af411e5d,4790
+snapshots: []
