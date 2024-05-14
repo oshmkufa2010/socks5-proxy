@@ -25,4 +25,46 @@ packages:
       size: 1248
   original:
     hackage: hashable-1.4.0.1@sha256:0251ad5228be07909a385152a3ff634fac1f892611f89904aea5c5e7af411e5d,4790
+- completed:
+    hackage: network-simple-0.4.5@sha256:22ff42a4e6b25a0dba498c558ff82e04e2cdcac7932082b620fea406fa32de8d,1320
+    pantry-tree:
+      sha256: ad6f783059f3406ce9f29cbe9eb1c2f35fc011f7607152c3c1d9ea829722e838
+      size: 564
+  original:
+    hackage: network-simple-0.4.5@sha256:22ff42a4e6b25a0dba498c558ff82e04e2cdcac7932082b620fea406fa32de8d,1320
+- completed:
+    hackage: network-bsd-2.8.1.0@sha256:e27df73ab03bb3b0d649d229c74deea0204635689422ff684af0571f3eb94802,3681
+    pantry-tree:
+      sha256: 06cf2322710faec3bbe53bb0299da7f0da416125ee6de1eeab5178e37dda93db
+      size: 264
+  original:
+    hackage: network-bsd-2.8.1.0@sha256:e27df73ab03bb3b0d649d229c74deea0204635689422ff684af0571f3eb94802,3681
+- completed:
+    hackage: safe-exceptions-0.1.7.4@sha256:8bb7261bd54bd58acfcb154be6a161fb6d0d31a1852aadc8e927d2ad2d7651d1,1412
+    pantry-tree:
+      sha256: fa4189feca3ca20f024087c209dfed9bbc8a9f799fb966bc3db9e24aef81dd09
+      size: 511
+  original:
+    hackage: safe-exceptions-0.1.7.4@sha256:8bb7261bd54bd58acfcb154be6a161fb6d0d31a1852aadc8e927d2ad2d7651d1,1412
+- completed:
+    hackage: socks-0.6.1@sha256:ac190808eea704672df18f702e8f2ad0b7a4d0af528e95ee55ea6ee0be672e2a,1258
+    pantry-tree:
+      sha256: 53d29c06c42e737ae99660e077c7c4b286f1272b3394ad7f74163867a5b3b8fa
+      size: 692
+  original:
+    hackage: socks-0.6.1@sha256:ac190808eea704672df18f702e8f2ad0b7a4d0af528e95ee55ea6ee0be672e2a,1258
+- completed:
+    hackage: basement-0.0.16@sha256:e9458cbe67f396fb81900ec65852a582a2b7febd09b17a85adee576c8d7cc321,5404
+    pantry-tree:
+      sha256: 868afcc62edd1c3af6405ee0a5d1bcc0cdc0919114e26299c7fd63706c750973
+      size: 5799
+  original:
+    hackage: basement-0.0.16@sha256:e9458cbe67f396fb81900ec65852a582a2b7febd09b17a85adee576c8d7cc321,5404
+- completed:
+    hackage: cereal-0.5.8.3@sha256:87a227c7b510217ea059db3dd59d9665edd8f0d1d3d8de39458e371a1d9402fb,2767
+    pantry-tree:
+      sha256: 2d570ae699908d131b63fe176115809982f86ec4589cdbf42848aa2ca79209cb
+      size: 641
+  original:
+    hackage: cereal-0.5.8.3@sha256:87a227c7b510217ea059db3dd59d9665edd8f0d1d3d8de39458e371a1d9402fb,2767
 snapshots: []

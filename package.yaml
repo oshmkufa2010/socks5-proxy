@@ -20,11 +20,13 @@ extra-source-files:
 description:         Please see the README on GitHub at <https://github.com/oshmkufa2010/socks5-proxy#readme>
 
 dependencies:
-- base >= 4.7 && < 5
+- base
 - network
 - bytestring
 - mtl
 - async
+- network-simple
+- exceptions
 
 library:
   source-dirs: src

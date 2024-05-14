@@ -17,7 +17,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: ghc-9.4.8
+resolver: ghc-9.2.8
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -43,6 +43,12 @@ extra-deps:
 - async-2.2.4@sha256:b83dec34a53520de84c6dd3dc7aae45d22409b46eb471c478b98108215a370f0,3095
 - network-3.1.2.5@sha256:433a5e076aaa8eb3e4158abae78fb409c6bd754e9af99bc2e87583d2bcd8404a,4888
 - hashable-1.4.0.1@sha256:0251ad5228be07909a385152a3ff634fac1f892611f89904aea5c5e7af411e5d,4790
+- network-simple-0.4.5@sha256:22ff42a4e6b25a0dba498c558ff82e04e2cdcac7932082b620fea406fa32de8d,1320
+- network-bsd-2.8.1.0@sha256:e27df73ab03bb3b0d649d229c74deea0204635689422ff684af0571f3eb94802,3681
+- safe-exceptions-0.1.7.4@sha256:8bb7261bd54bd58acfcb154be6a161fb6d0d31a1852aadc8e927d2ad2d7651d1,1412
+- socks-0.6.1@sha256:ac190808eea704672df18f702e8f2ad0b7a4d0af528e95ee55ea6ee0be672e2a,1258
+- basement-0.0.16@sha256:e9458cbe67f396fb81900ec65852a582a2b7febd09b17a85adee576c8d7cc321,5404
+- cereal-0.5.8.3@sha256:87a227c7b510217ea059db3dd59d9665edd8f0d1d3d8de39458e371a1d9402fb,2767
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
