@@ -3,7 +3,7 @@
 {-# LANGUAGE KindSignatures #-}
 
 module Protocol
-  ( buildSocks5Connection,
+  (
     withSocks5Conn,
     MonadConnection(..),
   )
@@ -72,6 +72,11 @@ recvTargetAddress = do
     toPort :: ByteString -> String
     toPort port = show $ foldl (\b a -> b * 256 + a) 0 $ fromIntegral <$> BS.unpack port
 
+sendAddress :: (MonadConnection m) => Word8 -> Word8 -> ByteString -> m ()
+sendAddress ver atyp addr = connPut $ ver `BS.cons` 0x00 `BS.cons` 0x00 `BS.cons` atyp `BS.cons` addr
+
+sendConnectFailed :: (MonadConnection m) => Word8 -> Word8 -> ByteString -> m ()
+sendConnectFailed ver atyp addr = connPut $ ver `BS.cons` 0x01 `BS.cons` 0x00 `BS.cons` atyp `BS.cons` addr
 
 buildSocks5Connection :: (MonadConnection m, MonadError String m, MonadIO m) => m Socket
 buildSocks5Connection = do
@@ -94,5 +99,4 @@ withSocks5Conn f = do
   connPut (BS.pack [ver, method])
   (cmd, atyp, addr, port, encodedAddrAndPort) <- recvTargetAddress
   when (cmd /= 0x01) $ throwError ("unsupported cmd: " ++ show cmd)
-  connect addr port (\(socket, _) -> connPut (ver `BS.cons` 0x00 `BS.cons` 0x00 `BS.cons` atyp `BS.cons` encodedAddrAndPort) >> f socket) `onException` do
-    connPut $ ver `BS.cons` 0x01 `BS.cons` 0x00 `BS.cons` atyp `BS.cons` encodedAddrAndPort
+  connect addr port (\(socket, _) -> sendAddress ver atyp encodedAddrAndPort >> f socket) `onException` sendConnectFailed ver atyp encodedAddrAndPort

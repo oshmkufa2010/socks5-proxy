@@ -36,10 +36,12 @@ library
       async
     , base
     , bytestring
+    , containers
     , exceptions
     , mtl
     , network
     , network-simple
+    , stm
   default-language: Haskell2010
 
 executable socks5-proxy-exe
@@ -53,11 +55,13 @@ executable socks5-proxy-exe
       async
     , base
     , bytestring
+    , containers
     , exceptions
     , mtl
     , network
     , network-simple
     , socks5-proxy
+    , stm
   default-language: Haskell2010
 
 test-suite socks5-proxy-test
@@ -72,9 +76,11 @@ test-suite socks5-proxy-test
       async
     , base
     , bytestring
+    , containers
     , exceptions
     , mtl
     , network
     , network-simple
     , socks5-proxy
+    , stm
   default-language: Haskell2010

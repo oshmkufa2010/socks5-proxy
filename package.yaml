@@ -27,6 +27,8 @@ dependencies:
 - async
 - network-simple
 - exceptions
+- stm
+- containers
 
 library:
   source-dirs: src
