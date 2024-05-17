@@ -1,6 +1,6 @@
 module Server
   ( socks5Server,
-    Connection,
+    Connection(..),
   )
 where
 
@@ -21,7 +21,7 @@ import qualified Data.Map as M
 import GHC.Conc (ThreadId(ThreadId))
 import Control.Monad.Catch (finally)
 
-data Connection = Connection { clientSocket :: Socket, serverSocket :: Socket  } deriving Eq
+data Connection = Connection { clientSocket :: Socket, serverSocket :: Socket, threadId :: ThreadId  } deriving Eq
 
 runSockets5Connection :: ConnectionT (ExceptT String IO) a -> Socket -> IO a
 runSockets5Connection conn socket = do
@@ -34,7 +34,7 @@ socks5Server :: Socket -> TVar (M.Map ThreadId Connection) -> IO ()
 socks5Server clientSocket connList = do
   threadId <- myThreadId
 
-  let conn = withSocks5Conn $ \socket -> liftIO $ do let c = Connection { clientSocket = clientSocket, serverSocket = socket }
+  let conn = withSocks5Conn $ \socket -> liftIO $ do let c = Connection { clientSocket = clientSocket, serverSocket = socket, threadId = threadId }
                                                      atomically $ modifyTVar connList (M.insert threadId c)
                                                      concurrently_ (forward clientSocket socket) (forward socket clientSocket)
 
